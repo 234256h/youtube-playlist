@@ -118,7 +118,7 @@
             const startMinutes = Math.floor(startHourSeconds / 60);
             const startSeconds = startHourSeconds % 60;
             const formattedStartTime = `${startMinutes}:${startSeconds < 10 ? '0' + startSeconds : startSeconds}`;
-            playListElement.innerHTML += `<p>Start Playlist at: ${formattedStartTime} to finish at the hour.</p>`;
+            playListElement.innerHTML += `<p>Start Playlist at: ${formattedStartTime} to finish at the top of the hour.</p>`;
         }
 
         function formatTime(seconds) {
