@@ -1,0 +1,6 @@
+# Backup files
+*.backup
+*.backup*
+*.old
+*-temp.html
+
