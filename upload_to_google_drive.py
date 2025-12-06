@@ -110,7 +110,8 @@ class GoogleDriveUploader:
                     print(f"⚠️  Could not refresh token: {e}")
                     creds = None
             
-            if not creds:
+            # If credentials are still invalid (no refresh_token or refresh failed), re-authenticate
+            if not creds or not creds.valid:
                 if not os.path.exists(self.credentials_file):
                     print(f"❌ Error: Credentials file not found: {self.credentials_file}")
                     print("\n📋 To use OAuth authentication:")
@@ -282,7 +283,8 @@ class GoogleDriveUploader:
             return None
     
     def upload_folder(self, local_folder: str, drive_folder_name: Optional[str] = None,
-                     parent_id: Optional[str] = None, create_if_not_exists: bool = True) -> Dict[str, int]:
+                     parent_id: Optional[str] = None, create_if_not_exists: bool = True,
+                     show_progress: bool = True) -> Dict[str, int]:
         """
         Upload a local folder and all its contents to Google Drive.
         
@@ -291,6 +293,7 @@ class GoogleDriveUploader:
             drive_folder_name: Name for the folder in Google Drive (defaults to local folder name)
             parent_id: ID of the parent folder in Drive (None for root)
             create_if_not_exists: Whether to create the folder if it doesn't exist
+            show_progress: Whether to show progress bars during upload
             
         Returns:
             Dictionary with upload statistics
@@ -326,7 +329,7 @@ class GoogleDriveUploader:
         stats = {'success': 0, 'failed': 0}
         
         for file_path in files_to_upload:
-            file_id = self.upload_file(str(file_path), folder_id)
+            file_id = self.upload_file(str(file_path), folder_id, show_progress)
             if file_id:
                 stats['success'] += 1
             else:
@@ -406,7 +409,8 @@ Setup Instructions:
     # Upload folder
     stats = uploader.upload_folder(
         local_folder=args.folder,
-        drive_folder_name=args.drive_folder
+        drive_folder_name=args.drive_folder,
+        show_progress=not args.no_progress
     )
     
     # Exit with appropriate code
@@ -418,4 +422,3 @@ Setup Instructions:
 
 if __name__ == '__main__':
     main()
-
