@@ -28,3 +28,6 @@ token.json
 # Downloads folder (optional - may contain large files)
 downloads/
 
+# AI planning documents (optional - uncomment to exclude from version control)
+# history/
+

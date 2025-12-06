@@ -1,0 +1,89 @@
+# Cursor AI Rules for YouTube Playlist Project
+
+## Issue Tracking with bd (beads)
+
+**CRITICAL**: This project uses **bd (beads)** for ALL task tracking. Do NOT create markdown TODO lists or use other tracking methods.
+
+### Before Starting Any Work
+
+1. Check for ready work: `bd ready --json`
+2. Claim the task: `bd update <id> --status in_progress`
+3. Work on the implementation
+4. If you discover new work, create linked issues: `bd create "Found bug" -p 1 --deps discovered-from:<parent-id> --json`
+5. When done, close the task: `bd close <id> --reason "Done" --json`
+
+### Essential Commands
+
+```bash
+# Find work to do
+bd ready --json                           # Show unblocked issues
+
+# Create issues
+bd create "Title" -t bug|feature|task -p 0-4 --json
+bd create "Subtask" --parent <epic-id> --json
+
+# Update issues  
+bd update <id> --status in_progress --json
+bd update <id> --priority 1 --json
+
+# Complete work
+bd close <id> --reason "Completed" --json
+
+# Always sync at end of session
+bd sync
+```
+
+### Issue Types & Priorities
+
+**Types**: `bug`, `feature`, `task`, `epic`, `chore`
+
+**Priorities**:
+- `0` - Critical (security, data loss, broken functionality)
+- `1` - High (major features, important bugs)
+- `2` - Medium (default, nice-to-have)
+- `3` - Low (polish, optimization)  
+- `4` - Backlog (future ideas)
+
+### AI Planning Documents
+
+Store ALL planning/design documents in `history/` directory:
+- PLAN.md, DESIGN.md, IMPLEMENTATION.md
+- ARCHITECTURE.md, TESTING_GUIDE.md
+- Any other ephemeral planning files
+
+**Keep the repository root clean!**
+
+### Important Rules
+
+✅ **DO**:
+- Use `bd` for ALL task tracking
+- Always use `--json` flag for programmatic commands
+- Check `bd ready` before asking "what should I work on?"
+- Link discovered work with `discovered-from` dependencies
+- Store planning docs in `history/` directory
+- Run `bd <cmd> --help` to discover available flags
+- Commit `.beads/issues.jsonl` with code changes
+
+❌ **DO NOT**:
+- Create markdown TODO lists
+- Use external issue trackers
+- Duplicate tracking systems
+- Clutter repo root with planning documents
+- Commit `.beads/beads.db` (only JSONL)
+
+### Project-Specific Guidelines
+
+- **Tech Stack**: Pure HTML/CSS/JavaScript (no frameworks)
+- **APIs**: YouTube Data API v3, YouTube IFrame API
+- **Testing**: Test in browser before committing
+- **Mobile**: Ensure responsive design
+
+### Git Integration
+
+Git hooks automatically sync bd issues:
+- **post-commit**: Auto-exports to JSONL
+- **post-merge**: Auto-imports from JSONL  
+- **post-checkout**: Auto-syncs on branch switches
+
+**For complete documentation, see AGENTS.md**
+
