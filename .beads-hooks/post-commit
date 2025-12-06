@@ -1,0 +1,11 @@
+#!/bin/bash
+# Beads post-commit hook - Auto-export after commits
+
+# Only run if beads is initialized
+if [ ! -d ".beads" ]; then
+    exit 0
+fi
+
+# Export to JSONL
+bd export --quiet 2>/dev/null || true
+

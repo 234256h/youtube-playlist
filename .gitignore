@@ -4,3 +4,8 @@
 *.old
 *-temp.html
 
+# Beads - Track JSONL, ignore database
+.beads/beads.db*
+.beads/daemon.sock
+.beads/.daemon.pid
+

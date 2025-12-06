@@ -1,0 +1,13 @@
+#!/bin/bash
+# Beads post-merge hook - Auto-import after merges
+
+# Only run if beads is initialized
+if [ ! -d ".beads" ]; then
+    exit 0
+fi
+
+# Import from JSONL if it exists
+if [ -f ".beads/issues.jsonl" ]; then
+    bd import --quiet 2>/dev/null || true
+fi
+

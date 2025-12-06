@@ -1,0 +1,11 @@
+#!/bin/bash
+# Beads post-checkout hook - Auto-sync on branch switches
+
+# Only run if beads is initialized
+if [ ! -d ".beads" ]; then
+    exit 0
+fi
+
+# Sync issues (export + import)
+bd sync --quiet 2>/dev/null || true
+
