@@ -1,0 +1,23 @@
+# Zoom Recording Downloader Dependencies
+
+# Browser automation for navigating Zoom pages
+playwright>=1.40.0
+
+# Progress bars for download tracking
+tqdm>=4.66.0
+
+# HTTP requests for file downloads
+requests>=2.31.0
+
+# Note: After installing these packages, you must also install the browser:
+#   playwright install chromium
+
+
+# Google Drive Upload Dependencies
+
+# Google API client libraries
+google-auth>=2.25.0
+google-auth-oauthlib>=1.2.0
+google-auth-httplib2>=0.2.0
+google-api-python-client>=2.110.0
+

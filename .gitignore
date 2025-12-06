@@ -9,3 +9,22 @@
 .beads/daemon.sock
 .beads/.daemon.pid
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Google Drive Credentials - NEVER COMMIT THESE!
+client_secrets.json
+service_account.json
+token.json
+
+# Downloads folder (optional - may contain large files)
+downloads/
+
